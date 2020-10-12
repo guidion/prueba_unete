@@ -1,13 +1,20 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import Home from './Home';
+import React from 'react'
+import AppBar from '@material-ui/core/AppBar'
+import CameraIcon from '@material-ui/icons/PhotoCamera'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Link from '@material-ui/core/Link'
+import Home from './Home'
+// import { Switch } from '@material-ui/core'
+import WatchList from './WatchList.jsx'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
 
 
 function Copyright() {
@@ -20,8 +27,9 @@ function Copyright() {
       {new Date().getFullYear()}
       {'.'}
     </Typography>
-  );
+  )
 }
+
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -52,10 +60,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
-}));
+}))
 
 export default function AppLayout() {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <React.Fragment>
@@ -69,11 +77,23 @@ export default function AppLayout() {
         </Toolbar>
       </AppBar>
       <main>
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Home />
-          </Container>
-        </div>
+        <Router>
+          <div className={classes.heroContent}>
+            <Container maxWidth="sm">
+              <Switch>
+                <Route path="/series">
+                  <WatchList programType="series" />
+                </Route>
+                <Route path="/movie">
+                  <WatchList programType="movie" />
+                </Route>
+                <Route path="/">
+                  <Home />
+                </Route>
+              </Switch>
+            </Container>
+          </div>
+        </Router>
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
@@ -87,5 +107,5 @@ export default function AppLayout() {
       </footer>
       {/* End footer */}
     </React.Fragment>
-  );
+  )
 }
