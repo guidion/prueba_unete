@@ -79,7 +79,7 @@ export default function AppLayout() {
       <main>
         <Router>
           <div className={classes.heroContent}>
-            <Container maxWidth="sm">
+            <Container maxWidth="xl">
               <Switch>
                 <Route path="/series">
                   <WatchList programType="series" />

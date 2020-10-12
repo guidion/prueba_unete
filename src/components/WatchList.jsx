@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '100%', // 16:9
   },
   cardContent: {
     flexGrow: 1,
@@ -44,31 +44,26 @@ const WatchList = ({programType}) => {
     }, [])
   
     return (
-      <Container className={classes.cardGrid} maxWidth="md">
-      {/* End hero unit */}
-      <Grid container spacing={4}>
-        {watchListData.map((e) => (
-          <Grid item key={e.title} xs={12} sm={6} md={4}>
-            <Card className={classes.card}>
-              <CardMedia
-                className={classes.cardMedia}
-                image="https://source.unsplash.com/random"
-                title="Image title"
-              />
-              <CardContent className={classes.cardContent}>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Heading
-                </Typography>
-                <Typography>
-                  This is a media card. You can use this section to describe the content.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
-  
+        <Container className={classes.cardGrid} maxWidth="xl">
+        <Grid container spacing={2}>
+          {watchListData.map((e) => (
+            <Grid item key={e.title} xs={2} sm={2} md={2}>
+              <Card className={classes.card}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={e['images']['Poster Art']['url']}
+                  title="Image title"
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h5" component="h4">
+                    {e.title}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     )
   }
   
